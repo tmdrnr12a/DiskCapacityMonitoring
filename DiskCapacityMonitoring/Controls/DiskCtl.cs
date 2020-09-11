@@ -7,13 +7,10 @@ namespace DiskCapacityMonitoring.Controls
 {
     public partial class DiskCtl : UserControl
     {
-        public enum E_UNIT { UNKNOWN, MB, GB, TB, PB }
 
-        public DriveType DISK_TYPE = DriveType.Unknown;
-        public E_UNIT DISK_UNIT = E_UNIT.UNKNOWN;
-        public string DISK_NAME = string.Empty;
-        public double TOTAL_SIZE = 0;           // Byte Value
-        public double FREE_SIZE = 0;            // Byte Value        
+        #region Variables 
+
+        public enum E_UNIT { UNKNOWN, MB, GB, TB, PB }
 
         // UNIT
         private long BYTE = 0;
@@ -21,6 +18,17 @@ namespace DiskCapacityMonitoring.Controls
         private long GIGA = 0;
         private long TERA = 0;
         private long PETA = 0;
+
+        // DISK Infomation
+        public DriveType DISK_TYPE = DriveType.Unknown;
+        public E_UNIT DISK_UNIT = E_UNIT.UNKNOWN;
+        public string DISK_NAME = string.Empty;
+        public double TOTAL_SIZE = 0;           // Byte Value
+        public double FREE_SIZE = 0;            // Byte Value        
+
+        #endregion Variables 
+
+        #region Create & Load & Shown 
 
         public DiskCtl()
         {
@@ -37,6 +45,13 @@ namespace DiskCapacityMonitoring.Controls
             SetDiskCapacity();
         }
 
+        #endregion Create & Load & Shown
+
+        #region Methods
+
+        /// <summary>
+        /// Check disk unit type
+        /// </summary>
         private void SetDistUnit()
         {
             this.BYTE = 1024;
@@ -58,6 +73,9 @@ namespace DiskCapacityMonitoring.Controls
                 this.DISK_UNIT = E_UNIT.UNKNOWN;
         }
 
+        /// <summary>
+        /// Set disk icon
+        /// </summary>
         private void SetDiskIcon()
         {
             switch (this.DISK_TYPE)
@@ -74,6 +92,9 @@ namespace DiskCapacityMonitoring.Controls
             uiPic_Image.BackgroundImageLayout = ImageLayout.Zoom;
         }
 
+        /// <summary>
+        /// Set disk information
+        /// </summary>
         private void SetDiskInfo()
         {
             uiLab_DiskName.Text = this.DISK_NAME;
@@ -85,6 +106,9 @@ namespace DiskCapacityMonitoring.Controls
             uiNPB_DiskCapacity.TextColor = Color.Black;
         }
 
+        /// <summary>
+        /// Set disk capacity (ProgressBar & Text)
+        /// </summary>
         public void SetDiskCapacity()
         {
             int value = Convert.ToInt32((this.TOTAL_SIZE - this.FREE_SIZE) / this.TOTAL_SIZE * 100);
@@ -94,6 +118,10 @@ namespace DiskCapacityMonitoring.Controls
             SetUsageText();
         }
 
+        /// <summary>
+        /// Set ProgressBar value
+        /// </summary>
+        /// <param name="value"></param>
         private void SetProgressValue(int value)
         {
             if (uiNPB_DiskCapacity.InvokeRequired == true)
@@ -109,6 +137,10 @@ namespace DiskCapacityMonitoring.Controls
             }
         }
 
+        /// <summary>
+        /// Set ProgressBar color
+        /// </summary>
+        /// <param name="value"></param>
         private void SetProgressColor(int value)
         {
             if (0 <= value && value < 25)
@@ -124,6 +156,9 @@ namespace DiskCapacityMonitoring.Controls
                 uiNPB_DiskCapacity.ProgressColor = Color.FromArgb(201, 92, 84);
         }
 
+        /// <summary>
+        /// Set usage text
+        /// </summary>
         private void SetUsageText()
         {
             double unitValue = GetDiskUnitValue();
@@ -134,6 +169,10 @@ namespace DiskCapacityMonitoring.Controls
             uiLab_DiskUsage.Text = usageText;
         }
 
+        /// <summary>
+        /// Get disk unit value
+        /// </summary>
+        /// <returns></returns>
         private double GetDiskUnitValue()
         {
             double unitValue = 0;
@@ -148,5 +187,11 @@ namespace DiskCapacityMonitoring.Controls
 
             return unitValue;
         }
+
+        #endregion Methods
+
+        #region Events
+
+        #endregion Events
     }
 }

@@ -10,6 +10,7 @@ namespace DiskCapacityMonitoring
     {
         #region Variables
 
+        // Delay time to update UI
         private int delaySeconds = 60;
 
         #endregion Variables
@@ -25,10 +26,10 @@ namespace DiskCapacityMonitoring
         
         public void MainForm_Shown(object sender, EventArgs e)
         {
-            // Local 및 Share Disk 세팅
+            // Set local disk and share disk
             SetDisk();
 
-            // 확인한 Disk 에 대한 UI를 갱신하는 스레드 실행
+            // Refresh thread
             Thread th = new Thread(new ThreadStart(RefreshDisk));
             th.Start();
         }
@@ -37,11 +38,15 @@ namespace DiskCapacityMonitoring
 
         #region Methods
 
+        /// <summary>
+        /// Create disk
+        /// </summary>
         private void SetDisk()
         {
             DriveInfo[] drives = DriveInfo.GetDrives();
             foreach (DriveInfo di in drives)
             {
+                // Unusable disk
                 if (di.IsReady == false)
                     continue;
 
@@ -56,6 +61,9 @@ namespace DiskCapacityMonitoring
             }
         }
 
+        /// <summary>
+        /// Refresh UI 
+        /// </summary>
         private void RefreshDisk()
         {
             while (true)
@@ -66,12 +74,16 @@ namespace DiskCapacityMonitoring
             }
         }
 
+        /// <summary>
+        /// Update disk capacity 
+        /// </summary>
         private void RefreshDiskCapacity()
         {
             DriveInfo[] drives = DriveInfo.GetDrives();
 
             foreach (DriveInfo di in drives)
             {
+                // Unusable disk
                 if (di.IsReady == false)
                     continue;
 
