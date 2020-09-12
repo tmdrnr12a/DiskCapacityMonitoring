@@ -21,7 +21,7 @@ namespace DiskCapacityMonitoring.Controls
 
         // DISK Infomation
         public DriveType DISK_TYPE = DriveType.Unknown;
-        public E_UNIT DISK_UNIT = E_UNIT.UNKNOWN;
+        private E_UNIT DISK_UNIT = E_UNIT.UNKNOWN;
         public string DISK_NAME = string.Empty;
         public double TOTAL_SIZE = 0;           // Byte Value
         public double FREE_SIZE = 0;            // Byte Value        
@@ -165,7 +165,7 @@ namespace DiskCapacityMonitoring.Controls
             double freeSize = Math.Round(this.FREE_SIZE / unitValue, 2);
             double totalSize = Math.Round(this.TOTAL_SIZE / unitValue, 2);
 
-            string usageText = $"{freeSize} {this.DISK_UNIT.ToString()} free of {totalSize} {this.DISK_UNIT.ToString()}";
+            string usageText = $"{freeSize} {this.DISK_UNIT} free of {totalSize} {this.DISK_UNIT}";
             uiLab_DiskUsage.Text = usageText;
         }
 

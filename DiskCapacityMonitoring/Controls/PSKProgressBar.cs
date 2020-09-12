@@ -63,7 +63,7 @@ namespace DiskCapacityMonitoring.Controls
             set
             {
                 _visualMode = value;
-                Invalidate();//redraw component after change value from VS Properties section
+                Invalidate(); //redraw component after change value from VS Properties section
             }
         }
 
@@ -79,7 +79,7 @@ namespace DiskCapacityMonitoring.Controls
             set
             {
                 _text = value;
-                Invalidate();//redraw component after change value from VS Properties section
+                Invalidate(); //redraw component after change value from VS Properties section
             }
         }
 
@@ -107,7 +107,6 @@ namespace DiskCapacityMonitoring.Controls
 
                 return text;
             }
-            set { }
         }
 
         private string PercentageStr => $"{(int)((float)Value - Minimum) / ((float)Maximum - Minimum) * 100 } %";
