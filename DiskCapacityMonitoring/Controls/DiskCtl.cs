@@ -165,7 +165,7 @@ namespace DiskCapacityMonitoring.Controls
             double freeSize = Math.Round(this.FREE_SIZE / unitValue, 2);
             double totalSize = Math.Round(this.TOTAL_SIZE / unitValue, 2);
 
-            string usageText = String.Format("{0} {1} free of {2} {1}", freeSize, this.DISK_UNIT.ToString(), totalSize);
+            string usageText = $"{freeSize} {this.DISK_UNIT.ToString()} free of {totalSize} {this.DISK_UNIT.ToString()}";
             uiLab_DiskUsage.Text = usageText;
         }
 
