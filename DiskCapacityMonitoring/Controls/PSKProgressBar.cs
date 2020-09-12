@@ -15,7 +15,7 @@ namespace DiskCapacityMonitoring.Controls
         TextAndCurrProgress
     }
 
-    public class NewProgressBar : ProgressBar
+    public class PSKProgressBar : ProgressBar
     {
         #region Variables
 
@@ -83,7 +83,7 @@ namespace DiskCapacityMonitoring.Controls
             }
         }
 
-        private string _textToDraw
+        private string TextToDraw
         {
             get
             {
@@ -92,16 +92,16 @@ namespace DiskCapacityMonitoring.Controls
                 switch (VisualMode)
                 {
                     case (ProgressBarDisplayMode.Percentage):
-                        text = _percentageStr;
+                        text = PercentageStr;
                         break;
                     case (ProgressBarDisplayMode.CurrProgress):
-                        text = _currProgressStr;
+                        text = CurrProgressStr;
                         break;
                     case (ProgressBarDisplayMode.TextAndCurrProgress):
-                        text = $"{CustomText}: {_currProgressStr}";
+                        text = $"{CustomText}: {CurrProgressStr}";
                         break;
                     case (ProgressBarDisplayMode.TextAndPercentage):
-                        text = $"{CustomText}: {_percentageStr}";
+                        text = $"{CustomText}: {PercentageStr}";
                         break;
                 }
 
@@ -110,21 +110,15 @@ namespace DiskCapacityMonitoring.Controls
             set { }
         }
 
-        private string _percentageStr { get { return $"{(int)((float)Value - Minimum) / ((float)Maximum - Minimum) * 100 } %"; } }
+        private string PercentageStr => $"{(int)((float)Value - Minimum) / ((float)Maximum - Minimum) * 100 } %";
 
-        private string _currProgressStr
-        {
-            get
-            {
-                return $"{Value}/{Maximum}";
-            }
-        }
-
+        private string CurrProgressStr => $"{Value}/{Maximum}";
+     
         #endregion Variables
 
         #region Create & Load & Shown
 
-        public NewProgressBar()
+        public PSKProgressBar()
         {
             this.Value = Minimum;
 
@@ -137,7 +131,9 @@ namespace DiskCapacityMonitoring.Controls
 
         private void FixComponentBlinking()
         {
-            SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
+            this.SetStyle(ControlStyles.UserPaint, true);
+            this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
         }
 
         private void DrawProgressBar(Graphics g)
@@ -160,7 +156,7 @@ namespace DiskCapacityMonitoring.Controls
         {
             if (VisualMode != ProgressBarDisplayMode.NoText)
             {
-                string text = _textToDraw;
+                string text = TextToDraw;
                 SizeF len = g.MeasureString(text, TextFont);
                 Point location = new Point(((Width / 2) - (int)len.Width / 2), ((Height / 2) - (int)len.Height / 2));
 

@@ -32,7 +32,7 @@
             this.uiPic_Image = new System.Windows.Forms.PictureBox();
             this.uiLab_DiskName = new System.Windows.Forms.Label();
             this.uiLab_DiskUsage = new System.Windows.Forms.Label();
-            this.uiNPB_DiskCapacity = new DiskCapacityMonitoring.Controls.NewProgressBar();
+            this.uiNPB_DiskCapacity = new DiskCapacityMonitoring.Controls.PSKProgressBar();
             this.uiPnl_Main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiPic_Image)).BeginInit();
             this.SuspendLayout();
@@ -108,6 +108,6 @@
         private System.Windows.Forms.PictureBox uiPic_Image;
         private System.Windows.Forms.Label uiLab_DiskName;
         private System.Windows.Forms.Label uiLab_DiskUsage;
-        private NewProgressBar uiNPB_DiskCapacity;
+        private PSKProgressBar uiNPB_DiskCapacity;
     }
 }

@@ -11,7 +11,7 @@ namespace DiskCapacityMonitoring
         #region Variables
 
         // Delay time to update UI
-        private int delaySeconds = 60;
+        private readonly int delaySeconds = 60;
 
         #endregion Variables
 
@@ -50,11 +50,13 @@ namespace DiskCapacityMonitoring
                 if (di.IsReady == false)
                     continue;
 
-                DiskCtl ctl = new DiskCtl();
-                ctl.DISK_TYPE = di.DriveType;
-                ctl.DISK_NAME = di.Name;
-                ctl.TOTAL_SIZE = di.TotalSize;
-                ctl.FREE_SIZE = di.AvailableFreeSpace;
+                DiskCtl ctl = new DiskCtl
+                {
+                    DISK_TYPE = di.DriveType,
+                    DISK_NAME = di.Name,
+                    TOTAL_SIZE = di.TotalSize,
+                    FREE_SIZE = di.AvailableFreeSpace
+                };
 
                 FlowLayoutPanel flp = (ctl.DISK_TYPE == DriveType.Fixed) ? uiFlp_Local : uiFlp_Share;
                 flp.Controls.Add(ctl);

@@ -68,7 +68,7 @@
     <Compile Include="Controls\DiskCtl.Designer.cs">
       <DependentUpon>DiskCtl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\NewProgressBar.cs">
+    <Compile Include="Controls\PSKProgressBar.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="MainForm.cs">
