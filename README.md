@@ -1,4 +1,4 @@
-# DiskCapacityMonitoring (
+# DiskCapacityMonitoring
  1. (Local/Share) Disk Capacity Monitoring
  
 # Result
